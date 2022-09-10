@@ -1,0 +1,5 @@
+pendulum
+apache-airflow
+pandas
+pymongo
+'apache-airflow[postgres]'
