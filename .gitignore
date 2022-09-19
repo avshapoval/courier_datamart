@@ -1,1 +1,7 @@
 venv/
+test/
+__pycache__/
+logs/
+airflow.cfg
+airflow.db
+webserver_config.py

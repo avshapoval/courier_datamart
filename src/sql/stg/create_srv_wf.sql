@@ -1,10 +1,4 @@
--- dds.srv_wf_settings definition
-
--- Drop table
-
--- DROP TABLE dds.srv_wf_settings;
-
-CREATE TABLE dds.srv_wf_settings (
+CREATE TABLE IF NOT EXISTS  stg.srv_wf_settings (
 	id serial4 NOT NULL,
 	workflow_key varchar NULL,
 	workflow_settings text NULL,

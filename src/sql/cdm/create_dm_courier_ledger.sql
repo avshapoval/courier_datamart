@@ -1,0 +1,21 @@
+CREATE TABLE IF NOT EXISTS 	cdm.dm_courier_ledger(
+	id serial4 PRIMARY KEY,
+	courier_id int,
+	courier_name varchar,
+	settlement_year SMALLINT,
+	settlement_month SMALLINT,
+	orders_count int,
+	orders_total_sum numeric(14, 2),
+	rate_avg numeric(3, 2),
+	order_processing_fee numeric(14, 2),
+	courier_order_sum numeric(14, 2),
+	courier_tips_sum numeric(14, 2),
+	courier_reward_sum numeric(14, 2),
+	CHECK (settlement_year > 1980 AND settlement_year < 2500),
+	CHECK (settlement_month >= 1 AND settlement_month <= 12),
+	CHECK (orders_count >= 0),
+	CHECK (orders_total_sum >= 0),
+	CHECK (rate_avg >= 0),
+	CHECK (courier_order_sum >= 0),
+	CHECK (courier_tips_sum >= 0)
+);
