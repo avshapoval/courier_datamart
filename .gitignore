@@ -5,3 +5,4 @@ logs/
 airflow.cfg
 airflow.db
 webserver_config.py
+docker-compose.yml

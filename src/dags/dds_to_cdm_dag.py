@@ -33,8 +33,8 @@ with DAG(
                 SELECT 
                 dc.id,
                 max(dc."name") "name",
-                extract(YEAR FROM fod.delivery_ts) settl_year,
-                extract(MONTH FROM fod.delivery_ts) settl_month,
+                EXTRACT (YEAR FROM fod.delivery_ts - interval '10 days') settl_year, --Вычитаем десять дней, т.к. расчеты проводятся 10 числа
+                EXTRACT (MONTH FROM fod.delivery_ts - interval '10 days') settl_month,
                 count(do2.id) ord_count,
                 sum(do2."sum") ord_total,
                 avg(fod.rating) rate_avg,
@@ -44,7 +44,7 @@ with DAG(
                     LEFT JOIN dds.dm_couriers dc ON fod.courier_id = dc.id 
                     LEFT JOIN dds.dm_restaurants dr ON fod.restaurant_id = dr.id
                     LEFT JOIN dds.dm_orders do2 ON do2.id = fod.order_id
-                GROUP BY dc.id, extract(YEAR FROM fod.delivery_ts), extract(MONTH FROM fod.delivery_ts)
+                GROUP BY dc.id, EXTRACT (YEAR FROM fod.delivery_ts - interval '10 days'), EXTRACT (MONTH FROM fod.delivery_ts - interval '10 days')
             ),
             courier_order_sum AS (
                 SELECT id,

@@ -1,5 +1,5 @@
 CREATE TABLE dds.fct_order_deliveries (
-	id serial4,
+	id int4 NOT NULL DEFAULT nextval('dds.fct_order_deliviries_id_seq'::regclass),
 	delivery_key varchar NULL,
 	order_id int4 NULL,
 	courier_id int4 NULL,
@@ -7,6 +7,8 @@ CREATE TABLE dds.fct_order_deliveries (
 	tip_sum numeric(14, 2) NULL,
 	rating numeric(2, 1) NULL,
 	address varchar NULL,
+	restaurant_id int4 NULL,
+	CONSTRAINT fct_order_deliveries_delivery_key_unique UNIQUE (delivery_key),
 	CONSTRAINT fct_order_deliviries_pkey PRIMARY KEY (id)
 );
 
