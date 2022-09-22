@@ -5,12 +5,6 @@ from airflow import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.postgres_operator import PostgresOperator
 
-headers = {
-    'X-Nickname': 'a-v.shapowal',
-    'X-API-KEY': '25c27781-8fde-4b30-a22e-524044a7580f',
-    'X-Cohort': '3'
-}
-
 pg_warehouse_conn_id = 'PG_WAREHOUSE_CONNECTION'
 CUR_DATE = '{{ ts }}'
 
