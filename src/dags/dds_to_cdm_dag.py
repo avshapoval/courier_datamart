@@ -1,9 +1,13 @@
 import pendulum
-
+import json
 
 from airflow import DAG
 from airflow.operators.empty import EmptyOperator
 from airflow.operators.postgres_operator import PostgresOperator
+from airflow.models import Variable
+
+string_headers = Variable.get("CONNECTION_HEADERS")
+headers = json.loads(string_headers)
 
 pg_warehouse_conn_id = 'PG_WAREHOUSE_CONNECTION'
 CUR_DATE = '{{ ts }}'
