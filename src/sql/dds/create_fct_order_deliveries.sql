@@ -1,5 +1,5 @@
 CREATE TABLE dds.fct_order_deliveries (
-	id int4 NOT NULL DEFAULT nextval('dds.fct_order_deliviries_id_seq'::regclass),
+	id serial4,
 	delivery_key varchar NULL,
 	order_id int4 NULL,
 	courier_id int4 NULL,

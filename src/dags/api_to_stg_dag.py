@@ -8,17 +8,14 @@ import dateutil.parser as dp
 
 from airflow import DAG
 from airflow.hooks.postgres_hook import PostgresHook
-from airflow.operators.postgres_operator import PostgresOperator
 from airflow.operators.python import PythonOperator
 from airflow.operators.empty import EmptyOperator
+from airflow.models import Variable
 
 log = logging.getLogger(__name__)
 
-headers = {
-    'X-Nickname': 'a-v.shapowal',
-    'X-API-KEY': '25c27781-8fde-4b30-a22e-524044a7580f',
-    'X-Cohort': '3'
-}
+string_headers = Variable.get("CONNECTION_HEADERS")
+headers = json.loads(string_headers)
 
 pg_warehouse_conn_id = 'PG_WAREHOUSE_CONNECTION'
 CUR_DATE = '{{ ts }}'
@@ -61,7 +58,6 @@ def load_from_api_full(collection_name, id_column: str):
         {
             "object_id": str(doc[id_column]),
             "object_value": json.dumps(doc),
-            #"update_ts": datetime.datetime.strftime(doc["update_ts"], "%Y-%m-%dT%H:%M:%S.%f%z")
         }
         for doc in all_docs
     ]
